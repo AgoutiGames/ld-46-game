@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" width="25" height="25" tilewidth="16" tileheight="16" infinite="0" nextlayerid="5" nextobjectid="1">
+<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" width="25" height="25" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="10">
+ <properties>
+  <property name="type" value="Garden"/>
+ </properties>
  <tileset firstgid="1" source="../tilesets/dirt_and_grass.tsx"/>
  <tileset firstgid="21" source="../tilesets/full_fence.tsx"/>
+ <tileset firstgid="30" source="../characters/player.tsx"/>
+ <tileset firstgid="36" source="../characters/flower.tsx"/>
+ <tileset firstgid="42" source="../characters/water_pump.tsx"/>
  <layer id="1" name="Ground Layer" width="25" height="25">
   <data encoding="base64" compression="zlib">
-   eJztVbsOwyAMJKRQigRS+/8fWwYsWa5fhIwdbiDgO8ecTQ8h9D+WcA68CB7KHj13MnGUPw8cA++BONAG0ozJcy0hkTOJ0alz70PWDelibfyNIgo6dcaVuX6imBJ+c+HypGdwzsBZhJhOzkUmHt8Z1Oxwcmp5Ug3497jJr2ms1kTzajY0vLzYx5JvrmhUwiv9r1UrS8MTh/0rzQPN15rvOf+3wM8DiQe8b+lIM8B7X6Cj1Uzq45X7su4FOKQ+o3OJ8252alzpQexdrU93vOudATsaHsBbZs33O/i1924HXO/dXbMdjS9S2h5a
+   eJztVcsOAyEIdN1qrYkm7f9/bDlIQiggru2thzm4CwyPEXsIof+xhBPwYLgZ/7jdKfjx+BlwAJ6ACGiANHzyOGtIzCYJPHX8e7FzI7yUm37jiApPHX5lnO/Ep4TPXKQ8uQ3NGWMWxaczuyj405lhzw5nTCtPzoG1x834FsdqTyyt5gmHNy7VsaabKxyVxdXqnfVqxuHxo/rV9oGla0v3kv5bkPeBFge1P+PRdoB3Xshj9Uy7xyvzms0FY2j3jO8lSbvZyXHlDlLtWvd0R7ueHYDvzGz37oDr9kot3hqs9+6bNfyilh2ON0EqHlg=
   </data>
  </layer>
  <layer id="3" name="Fence and walls" width="25" height="25">
@@ -12,6 +18,16 @@
    eJxjYBgeQAyIRWmIxYFYmsZ+kBm1Y9SOUTtG7Ri1Y9SOUTuGhR2SNLZDCogBhEoGxw==
   </data>
  </layer>
+ <objectgroup id="5" name="Actors">
+  <object id="1" name="Player1" gid="30" x="200.25" y="331.125" width="32" height="32"/>
+  <object id="2" name="GardenFlower" gid="36" x="59" y="333" width="16" height="16"/>
+  <object id="3" name="GardenFlower" gid="36" x="350" y="298.5" width="16" height="16"/>
+  <object id="4" name="GardenFlower" gid="36" x="313.5" y="116.5" width="16" height="16"/>
+  <object id="5" name="GardenFlower" gid="36" x="363" y="137" width="16" height="16"/>
+  <object id="6" name="GardenFlower" gid="36" x="43.5" y="118.5" width="16" height="16"/>
+  <object id="7" name="GardenFlower" gid="36" x="174" y="164.5" width="16" height="16"/>
+  <object id="9" name="Well" gid="42" x="197.761" y="379.174" width="32" height="32"/>
+ </objectgroup>
  <layer id="4" name="Front Fence" width="25" height="25">
   <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUjIJRMApGwSgYBdQGojTEIAAAa+AB5A==

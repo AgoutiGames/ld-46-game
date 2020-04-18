@@ -3,6 +3,8 @@
 #include <iostream>
 
 SceneManager::SceneManager(std::string map_filename) {
+    // Do this as early as possible
+    set_linear_filtering(false);
     load_scene(map_filename);
 }
 

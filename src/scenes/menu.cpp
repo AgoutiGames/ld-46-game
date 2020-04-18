@@ -43,7 +43,7 @@ void Menu::button_pressed(std::string id) {
     }
     else if(id == "Start") {
         // Load next scene file
-        // m_scene_manager->next_scene("stage1.tmx");
+        m_scene_manager->next_scene("garden1.tmx");
     }
     else {
         std::cerr << "Button type: " << id << " is unrecognized!\n";
