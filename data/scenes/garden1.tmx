@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" width="25" height="25" tilewidth="16" tileheight="16" infinite="0" nextlayerid="2" nextobjectid="1">
+ <tileset firstgid="1" source="../tilesets/dirt_and_grass.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJzFVcsOwyAM68paNiQqbf//sWNSkawoLxqmHXxqsEOI3WNZluPPSA3PhvtELoq9oTZsoCPVImhPCbg0bKB7a3gJWBveRKOcHNK5lWh96x7KPHZGI59c0rlMtHBuFMXowUK/b2X6xBqtBwsZ7iJp9Brp+8hdNI4cmJVXI+IV9MsVjUR4rD2+olEIrzTPyKyK81zX6J73ZsnIXqNHNHD99r22dFCDe7MZ/rG87nkv610wP7m90PKq7y6XmSN9ah7H3dVyILK73oyZlSUS8H8ZyW8Pf/2RjuS9mTOLaHwAcSAezw==
+  </data>
+ </layer>
+</map>
