@@ -2,6 +2,7 @@
 #define FLOWER_HPP_INCLUDED
 
 #include "core/game_character.hpp"
+#include "characters/water_meter.hpp"
 
 class GameScene;
 
@@ -17,9 +18,13 @@ class Flower : public GameCharacter {
         static const char* type;
     protected:
         // Add members here
-        
+        WaterMeter* m_gauge;
+
     private:
         static const bool good;
+
+        float m_water_stand = 1.0;
+        float m_water_loss = 0.02; // Per second
 };
 
 
