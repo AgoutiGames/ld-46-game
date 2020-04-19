@@ -34,10 +34,36 @@ void Garden::update() {
     // Add scene logic here
 
     // Calls update on all characters in scene
-    m_timer -= get_delta_time();
-    if(m_timer < 0.0) {m_timer = 0.0;}
-    m_sun_meter->set_state(m_timer/m_time_limit);
-    if(m_timer > 0.0) {
+    if(!m_end) {
+        m_timer -= get_delta_time();
+        if(m_timer < 0.0) {
+            m_timer = 0.0;
+            m_end = true;
+
+            // Setup End Game Screen!
+            unhide_layer("GameOver");
+
+            salmon::TextRef::Attributes a;
+            a.bold = true;
+            a.color = {155,50,50};
+            a.font_family = "OpenSans";
+            // a.underline = true;
+            a.pixel_size = 35;
+            add_text("EndScreen", "Text",90,170, "GAME OVER", a);
+
+            a.bold = false;
+            a.color = {0,0,0};
+            a.pixel_size = 10;
+            add_text("Button Notice", "Text", 135, 208, "Press Return to start again!", a);
+
+        }
+
+        m_sun_meter->set_state(m_timer/m_time_limit);
         GameScene::update();
+    }
+    else {
+        if(get_input_cache().just_pressed("Return")) {
+            m_scene_manager->next_scene("menu.tmx");
+        }
     }
 }

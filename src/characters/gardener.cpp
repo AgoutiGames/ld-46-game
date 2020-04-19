@@ -21,6 +21,14 @@ void Gardener::init() {
         m_gauge->move_absolute(4,32);
     }
 
+    m_score = static_cast<Score*>(m_scene->add_character("Score", "Interface"));
+    if(m_score == nullptr) {
+        std::cerr << "Gardener couldn't init his score counter!\n";
+    }
+    else {
+        m_score->move_absolute(50,34);
+    }
+
     m_splashing = static_cast<Effect*>(m_scene->add_character("WaterSplash", "Actors"));
     if(m_splashing == nullptr) {
         std::cerr << "Gardener couldn't init his splashing effect!\n";

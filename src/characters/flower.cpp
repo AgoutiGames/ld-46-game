@@ -32,7 +32,7 @@ void Flower::update() {
 
     salmon::InputCacheRef input = m_scene->get_input_cache();
 
-    if(m_water_stand > 0.0 && input.is_down("space")) {
+    if(!m_dead && input.is_down("space")) {
         for(salmon::CollisionRef c : get_collisions()) {
             if(c.my_hitbox() == "WATER" && c.other_hitbox() == "WATER") {
                 Gardener* g = static_cast<Gardener*>(m_scene->get_character_by_id(c.get_actor_id()));
@@ -49,14 +49,29 @@ void Flower::update() {
 
     clear_collisions();
 
-    if(m_water_stand > 0.0) {
-        m_water_stand -= m_water_loss * delta;
-        int frame = m_water_stand * (get_anim_frame_count()-1) + 1;
-        set_animation(salmon::AnimationType::current, salmon::Direction::current, frame);
-        m_gauge->set_state(m_water_stand);
+    if(!m_dead) {
+        if(m_water_stand > 0.0) {
+            m_water_stand -= m_water_loss * delta;
+            int frame = m_water_stand * (get_anim_frame_count()-1) + 1;
+            set_animation(salmon::AnimationType::current, salmon::Direction::current, frame);
+            m_gauge->set_state(m_water_stand);
+
+            m_seconds += delta;
+            if(m_seconds > m_seconds_per_point) {
+                m_seconds -= m_seconds_per_point;
+                static_cast<Gardener*>(m_scene->get_character_by_name("Player1"))->get_score()->add_points(1);
+            }
+        }
+        else {
+            set_animation(salmon::AnimationType::current, salmon::Direction::current,0);
+            m_gauge->set_state(0.0);
+            m_dead = true;
+
+            // Remove ten points if plant is dead!
+            static_cast<Gardener*>(m_scene->get_character_by_name("Player1"))->get_score()->add_points(-10);
+        }
     }
-    else {
-        set_animation(salmon::AnimationType::current, salmon::Direction::current,0);
-        m_gauge->set_state(0.0);
-    }
+
+
+
 }

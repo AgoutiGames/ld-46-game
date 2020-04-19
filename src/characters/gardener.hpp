@@ -5,6 +5,7 @@
 
 #include "characters/water_meter.hpp"
 #include "characters/effect.hpp"
+#include "characters/score.hpp"
 
 class GameScene;
 
@@ -24,11 +25,14 @@ class Gardener : public GameCharacter {
 
         bool is_can_empty() {return m_water_stand == 0.0;}
 
+        Score* get_score() {return m_score;}
+
         static const char* type;
     protected:
         // Add members here
-        WaterMeter* m_gauge;
-        Effect* m_splashing;
+        WaterMeter* m_gauge = nullptr;
+        Effect* m_splashing = nullptr;
+        Score* m_score = nullptr;
 
         float m_water_stand = 0.0;
 

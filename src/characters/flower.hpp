@@ -27,6 +27,11 @@ class Flower : public GameCharacter {
         float m_water_loss = 0.02; // Per second
 
         float m_fill_rate = 0.75; // Fills flower pot this amount per second
+
+        float m_seconds_per_point = 5; // All five seconds one point is granted
+        float m_seconds = 0.0;
+
+        bool m_dead = false;
 };
 
 

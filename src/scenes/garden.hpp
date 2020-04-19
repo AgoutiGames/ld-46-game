@@ -23,6 +23,8 @@ class Garden : public GameScene {
         float m_time_limit = 90; // Seconds
         float m_timer;
 
+        bool m_end = false;
+
 
     private:
         static const bool good;
