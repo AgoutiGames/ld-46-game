@@ -23,8 +23,10 @@ class Flower : public GameCharacter {
     private:
         static const bool good;
 
-        float m_water_stand = 1.0;
+        float m_water_stand = 0.9999;
         float m_water_loss = 0.02; // Per second
+
+        float m_fill_rate = 0.75; // Fills flower pot this amount per second
 };
 
 

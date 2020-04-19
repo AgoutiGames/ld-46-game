@@ -9,6 +9,7 @@
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="3" y="9" width="10" height="7"/>
+   <object id="2" name="WATER" x="3" y="0" width="10" height="9"/>
   </objectgroup>
  </tile>
  <tile id="1" type="ACTOR_ANIMATION">

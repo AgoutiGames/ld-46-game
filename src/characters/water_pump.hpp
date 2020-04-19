@@ -17,9 +17,11 @@ class WaterPump : public GameCharacter {
         static const char* type;
     protected:
         // Add members here
-        
+
     private:
         static const bool good;
+
+        float m_fill_rate = 0.3; // Fill this amount per second
 };
 
 

@@ -87,6 +87,7 @@ set(CHARACTER_SOURCES
     src/characters/flower.cpp
     src/characters/water_pump.cpp
     src/characters/water_meter.cpp
+    src/characters/effect.cpp
     )
 
 set(CHARACTER_COMPONENT_SOURCES

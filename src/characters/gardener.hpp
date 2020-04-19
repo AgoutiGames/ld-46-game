@@ -3,6 +3,9 @@
 
 #include "core/game_character.hpp"
 
+#include "characters/water_meter.hpp"
+#include "characters/effect.hpp"
+
 class GameScene;
 
 class Gardener : public GameCharacter {
@@ -16,9 +19,23 @@ class Gardener : public GameCharacter {
 
         void move(float x, float y) {move_relative(x,y, salmon::Collidees::tile_and_actor,{salmon::DEFAULT_HITBOX},{salmon::DEFAULT_HITBOX},true);}
 
+        bool fill_can(float amount);
+        bool empty_can(float amount);
+
+        bool is_can_empty() {return m_water_stand == 0.0;}
+
         static const char* type;
     protected:
         // Add members here
+        WaterMeter* m_gauge;
+        Effect* m_splashing;
+
+        float m_water_stand = 0.0;
+
+        float m_drain_rate = 0.1; // Depletes can this amount per second
+
+        float m_x_splash_offset = 8.0;
+        float m_y_splash_offset = 4.0;
 
     private:
         static const bool good;

@@ -18,6 +18,10 @@
    <property name="ANIMATION_TYPE" value="WALK"/>
    <property name="DIRECTION" value="DOWN"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" name="FILL" x="13" y="16" width="6" height="9"/>
+   <object id="2" name="WATER" x="14" y="19" width="4" height="8"/>
+  </objectgroup>
  </tile>
  <tile id="3" type="ACTOR_ANIMATION">
   <properties>
@@ -25,6 +29,10 @@
    <property name="ANIMATION_TYPE" value="WALK"/>
    <property name="DIRECTION" value="UP"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" name="FILL" x="14" y="16" width="4" height="6"/>
+   <object id="2" name="WATER" x="14" y="10" width="4" height="10"/>
+  </objectgroup>
  </tile>
  <tile id="4" type="ACTOR_ANIMATION">
   <properties>
@@ -32,6 +40,10 @@
    <property name="ANIMATION_TYPE" value="WALK"/>
    <property name="DIRECTION" value="LEFT"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" name="FILL" x="6" y="16" width="8" height="5"/>
+   <object id="2" name="WATER" x="0" y="14" width="9" height="12"/>
+  </objectgroup>
  </tile>
  <tile id="5" type="ACTOR_ANIMATION">
   <properties>
@@ -39,5 +51,9 @@
    <property name="ANIMATION_TYPE" value="WALK"/>
    <property name="DIRECTION" value="RIGHT"/>
   </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" name="FILL" x="18" y="16" width="8" height="5"/>
+   <object id="2" name="WATER" x="23" y="14" width="9" height="12"/>
+  </objectgroup>
  </tile>
 </tileset>

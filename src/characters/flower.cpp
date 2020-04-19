@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "core/game_scene.hpp"
+#include "characters/gardener.hpp"
 
 const char* Flower::type = "Flower";
 const bool Flower::good = GameCharacter::register_class<Flower>(Flower::type);
@@ -28,6 +29,25 @@ void Flower::init() {
 void Flower::update() {
     // Add character logic here
     float delta = m_scene->get_delta_time();
+
+    salmon::InputCacheRef input = m_scene->get_input_cache();
+
+    if(m_water_stand > 0.0 && input.is_down("space")) {
+        for(salmon::CollisionRef c : get_collisions()) {
+            if(c.my_hitbox() == "WATER" && c.other_hitbox() == "WATER") {
+                Gardener* g = static_cast<Gardener*>(m_scene->get_character_by_id(c.get_actor_id()));
+                if(g == nullptr) {
+                    std::cerr << "BIG ERROR! FLOWER CAN'T FIND GARDENER!!\n";
+                }
+                else if (!g->is_can_empty()) {
+                    m_water_stand += m_fill_rate * delta;
+                    if(m_water_stand > 0.9999) {m_water_stand = 0.9999;}
+                }
+            }
+        }
+    }
+
+    clear_collisions();
 
     if(m_water_stand > 0.0) {
         m_water_stand -= m_water_loss * delta;
