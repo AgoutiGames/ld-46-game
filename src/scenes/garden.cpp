@@ -35,6 +35,10 @@ void Garden::update() {
 
     // Calls update on all characters in scene
     if(!m_end) {
+        if(get_input_cache().just_pressed("Escape")) {
+            m_scene_manager->next_scene("menu.tmx");
+        }
+
         m_timer -= get_delta_time();
         if(m_timer < 0.0) {
             m_timer = 0.0;

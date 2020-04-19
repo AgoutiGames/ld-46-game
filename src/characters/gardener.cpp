@@ -1,6 +1,7 @@
 #include "characters/gardener.hpp"
 
 #include <iostream>
+#include <cmath>
 
 #include "core/game_scene.hpp"
 #include "input_cache_ref.hpp"
@@ -44,34 +45,86 @@ void Gardener::update() {
     // Add character logic here
     salmon::InputCacheRef input = m_scene->get_input_cache();
 
+    // Decellerate current speed
+    float decellaration_value = m_decellaration_factor * delta;
+    if(std::abs(m_x_speed) < decellaration_value) {
+        m_x_speed = 0;
+    }
+    else if(m_x_speed > 0.0) {
+        m_x_speed -= decellaration_value;
+    }
+    else {
+        m_x_speed += decellaration_value;
+    }
+
+
+    if(std::abs(m_y_speed) < decellaration_value) {
+        m_y_speed = 0;
+    }
+    else if(m_y_speed > 0.0) {
+        m_y_speed -= decellaration_value;
+    }
+    else {
+        m_y_speed += decellaration_value;
+    }
+
+    float m_x_direction = 0.0;
+    float m_y_direction = 0.0;
+
     if(input.is_down("w")) {
         animate(salmon::AnimationType::current,salmon::Direction::up);
-        move(0,-1);
+        //move(0,-1);
+
+        m_y_direction = -1.0;
 
         m_x_splash_offset = 8.0;
         m_y_splash_offset = -8.0;
     }
     else if(input.is_down("s")) {
         animate(salmon::AnimationType::current,salmon::Direction::down);
-        move(0,1);
+        //move(0,1);
+
+        m_y_direction = 1.0;
 
         m_x_splash_offset = 8.0;
         m_y_splash_offset = 4.0;
     }
     if(input.is_down("a")) {
         animate(salmon::AnimationType::current,salmon::Direction::left);
-        move(-1,0);
+        //move(-1,0);
+
+        m_x_direction = -1.0;
 
         m_x_splash_offset = -7.0;
         m_y_splash_offset = -2.0;
     }
     else if(input.is_down("d")) {
         animate(salmon::AnimationType::current,salmon::Direction::right);
-        move(1,0);
+        //move(1,0);
+
+        m_x_direction = 1.0;
 
         m_x_splash_offset = 23.0;
         m_y_splash_offset = -2.0;
     }
+
+    // normalize(m_x_direction,m_y_direction);
+    m_x_speed += m_x_direction * (m_acceleration_factor + m_decellaration_factor) * delta;
+    m_y_speed += m_y_direction * (m_acceleration_factor + m_decellaration_factor) * delta;
+    // Normalize directional speed vector if its over maximum (length of 1.0)
+    if(std::sqrt(m_x_speed * m_x_speed + m_y_speed * m_y_speed) > 1.0) {
+        normalize(m_x_speed,m_y_speed);
+    }
+
+
+    bool collided = !move(m_max_speed * m_x_speed * delta, 0.0);
+
+    collided = move(0.0, m_max_speed * m_y_speed * delta) || collided;
+
+    /*if(collided) {
+        m_x_speed = -m_x_speed;
+        m_y_speed = -m_y_speed;
+    }*/
 
     if(input.is_down("space")) {
         if(empty_can(m_drain_rate * delta)) {
@@ -113,4 +166,11 @@ bool Gardener::empty_can(float amount) {
     else {
         return true;
     }
+}
+
+void Gardener::normalize(float& x, float& y) {
+    if(x == 0.0 && y == 0.0) {return;}
+    float len = std::sqrt(x*x + y*y);
+    x /= len;
+    y /= len;
 }

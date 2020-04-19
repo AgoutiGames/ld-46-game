@@ -18,7 +18,7 @@ class Gardener : public GameCharacter {
         void update() override;
         std::string get_type() const override {return type;}
 
-        void move(float x, float y) {move_relative(x,y, salmon::Collidees::tile_and_actor,{salmon::DEFAULT_HITBOX},{salmon::DEFAULT_HITBOX},true);}
+        bool move(float x, float y) {return move_relative(x,y, salmon::Collidees::tile_and_actor,{salmon::DEFAULT_HITBOX},{salmon::DEFAULT_HITBOX},true);}
 
         bool fill_can(float amount);
         bool empty_can(float amount);
@@ -41,8 +41,20 @@ class Gardener : public GameCharacter {
         float m_x_splash_offset = 8.0;
         float m_y_splash_offset = 4.0;
 
+
+        // Movement physic
+        float m_acceleration_factor = 3.5; // This amount of speed is gained per second
+        float m_max_speed = 100.0; // Pixel per second
+
+        float m_decellaration_factor = 5.0; // This amount of speed is lost per second
+
+        float m_x_speed = 0.0;
+        float m_y_speed = 0.0;
+
     private:
         static const bool good;
+
+        void normalize(float& x, float& y);
 };
 
 
