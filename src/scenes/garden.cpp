@@ -13,8 +13,8 @@ void Garden::init() {
     // Initializes all characters in scene
     GameScene::init();
     // Setup member vars here | example: put(m_speed, "m_speed");
-    m_scene_manager->set_game_resolution(400,400);
-    m_scene_manager->set_window_size(800,800);
+    //m_scene_manager->set_game_resolution(400,400);
+    //m_scene_manager->set_window_size(800,800);
 
     m_sun_meter = static_cast<WaterMeter*>(get_character_by_name("SunMeter"));
     if(m_sun_meter == nullptr) {
@@ -66,7 +66,7 @@ void Garden::update() {
         GameScene::update();
     }
     else {
-        if(get_input_cache().just_pressed("Return")) {
+        if(get_input_cache().just_pressed("Return") || get_input_cache().get_mouse_state().left.pressed) {
             m_scene_manager->next_scene("menu.tmx");
         }
     }

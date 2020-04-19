@@ -27,4 +27,17 @@
    <frame tileid="0" duration="200"/>
   </animation>
  </tile>
+ <tile id="2">
+  <animation>
+   <frame tileid="0" duration="300"/>
+   <frame tileid="1" duration="300"/>
+   <frame tileid="2" duration="300"/>
+   <frame tileid="3" duration="300"/>
+   <frame tileid="4" duration="300"/>
+   <frame tileid="5" duration="300"/>
+   <frame tileid="6" duration="300"/>
+   <frame tileid="7" duration="300"/>
+   <frame tileid="9" duration="300"/>
+  </animation>
+ </tile>
 </tileset>

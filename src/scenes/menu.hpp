@@ -22,6 +22,8 @@ class Menu : public GameScene {
     protected:
         // Add members here
 
+        bool m_instructions_open = false;
+
     private:
         static const bool good;
 };
