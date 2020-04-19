@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" width="25" height="25" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="13">
+<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" width="25" height="25" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="14">
  <properties>
   <property name="type" value="Garden"/>
  </properties>
@@ -12,6 +12,7 @@
  <tileset firstgid="56" source="../characters/water_meters.tsx"/>
  <tileset firstgid="67" source="../interface/water_can_meter.tsx"/>
  <tileset firstgid="77" source="../characters/water_splash.tsx"/>
+ <tileset firstgid="83" source="../interface/sun_meter.tsx"/>
  <layer id="1" name="Ground Layer" width="25" height="25">
   <data encoding="base64" compression="zlib">
    eJztVcsOAyEIdN1qrYkm7f9/bDlIQiggru2thzm4CwyPEXsIof+xhBPwYLgZ/7jdKfjx+BlwAJ6ACGiANHzyOGtIzCYJPHX8e7FzI7yUm37jiApPHX5lnO/Ep4TPXKQ8uQ3NGWMWxaczuyj405lhzw5nTCtPzoG1x834FsdqTyyt5gmHNy7VsaabKxyVxdXqnfVqxuHxo/rV9oGla0v3kv5bkPeBFge1P+PRdoB3Xshj9Uy7xyvzms0FY2j3jO8lSbvZyXHlDlLtWvd0R7ueHYDvzGz37oDr9kot3hqs9+6bNfyilh2ON0EqHlg=
@@ -32,7 +33,9 @@
   <object id="7" name="GardenFlower" gid="36" x="174" y="164.5" width="16" height="16"/>
   <object id="9" name="Well" gid="42" x="197.761" y="379.174" width="32" height="32"/>
  </objectgroup>
- <objectgroup id="6" name="Interface"/>
+ <objectgroup id="6" name="Interface">
+  <object id="13" name="SunMeter" gid="83" x="100" y="33" width="200" height="32"/>
+ </objectgroup>
  <layer id="4" name="Front Fence" width="25" height="25">
   <data encoding="base64" compression="zlib">
    eJxjYBgFo2AUjIJRMApGwSgYBdQGojTEIAAAa+AB5A==

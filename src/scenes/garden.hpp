@@ -2,6 +2,7 @@
 #define GARDEN_HPP_INCLUDED
 
 #include "core/game_scene.hpp"
+#include "characters/water_meter.hpp"
 
 class SceneManager;
 
@@ -17,7 +18,12 @@ class Garden : public GameScene {
         static const char* type;
     protected:
         // Add members here
-        
+        WaterMeter* m_sun_meter;
+
+        float m_time_limit = 90; // Seconds
+        float m_timer;
+
+
     private:
         static const bool good;
 };
