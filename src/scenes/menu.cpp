@@ -15,6 +15,15 @@ void Menu::init() {
     m_scene_manager->set_fullscreen(false);
     m_scene_manager->set_window_size(800,800);
 
+    m_bg_music = get_audio_manager().get_music("music/gardening_music.ogg");
+    if(!m_bg_music.good()) {
+        std::cerr << "Failed to load music!";
+    }
+    m_bg_music.set_volume(0.25);
+    if(!m_bg_music.playing()) {
+        m_bg_music.play();
+    }
+
     // Preload whole data folder
     // m_scene_manager->add_preload_directory("");
     // m_scene_manager->preload(50);

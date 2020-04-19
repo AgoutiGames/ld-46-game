@@ -3,6 +3,7 @@
 
 #include "core/game_character.hpp"
 
+#include "sound_ref.hpp"
 #include "characters/water_meter.hpp"
 #include "characters/effect.hpp"
 #include "characters/score.hpp"
@@ -51,10 +52,23 @@ class Gardener : public GameCharacter {
         float m_x_speed = 0.0;
         float m_y_speed = 0.0;
 
+        salmon::SoundRef m_tick;
+        salmon::SoundRef m_tock;
+        bool m_is_tick = true;
+
+        float m_min_pause_between_steps = 0.4;
+        float m_max_pause_between_steps = 2.0;
+
+        float m_current_step_pause = 0.0;
+
+        salmon::SoundRef m_drip;
+
     private:
         static const bool good;
 
         void normalize(float& x, float& y);
+
+        void walk_sound(float speed);
 };
 
 

@@ -35,6 +35,22 @@ void Gardener::init() {
         std::cerr << "Gardener couldn't init his splashing effect!\n";
     }
 
+    m_tick = m_scene->get_audio_manager().get_sound("sounds/tick2.ogg");
+    m_tock = m_scene->get_audio_manager().get_sound("sounds/tock2.ogg");
+
+    m_tick.set_volume(0.5);
+    m_tock.set_volume(0.5);
+
+    if(!m_tick.good() || !m_tock.good()) {
+        std::cerr << "Failed to load gardener walking sound!!";
+    }
+
+    m_drip = m_scene->get_audio_manager().get_sound("sounds/drip2.ogg");
+    if(!m_drip.good()) {
+        std::cerr << "Failed to load gardener dripping sound!!";
+    }
+    m_drip.set_volume(0.3);
+
     // Clear data accessed via put
     get_data().clear();
 }
@@ -112,14 +128,20 @@ void Gardener::update() {
     m_x_speed += m_x_direction * (m_acceleration_factor + m_decellaration_factor) * delta;
     m_y_speed += m_y_direction * (m_acceleration_factor + m_decellaration_factor) * delta;
     // Normalize directional speed vector if its over maximum (length of 1.0)
-    if(std::sqrt(m_x_speed * m_x_speed + m_y_speed * m_y_speed) > 1.0) {
+
+    float len = std::sqrt(m_x_speed * m_x_speed + m_y_speed * m_y_speed);
+    if(len > 1.0) {
         normalize(m_x_speed,m_y_speed);
+        len = 1.0;
     }
 
-
     bool collided = !move(m_max_speed * m_x_speed * delta, 0.0);
+    if(collided) {m_x_speed = -0.5 * m_x_speed;}
 
-    collided = move(0.0, m_max_speed * m_y_speed * delta) || collided;
+    collided = !move(0.0, m_max_speed * m_y_speed * delta) || collided;
+    if(collided) {m_y_speed = -0.5 * m_y_speed;}
+
+    walk_sound(std::sqrt(m_x_speed * m_x_speed + m_y_speed * m_y_speed));
 
     /*if(collided) {
         m_x_speed = -m_x_speed;
@@ -131,6 +153,7 @@ void Gardener::update() {
             // Update splash effect position
             m_splashing->move_absolute(get_x()+m_x_splash_offset,get_y()+m_y_splash_offset);
             m_splashing->animate();
+            if(!m_drip.playing()) {m_drip.play(-1);}
         }
         else {
             m_splashing->set_animation(salmon::AnimationType::current,salmon::Direction::current,0);
@@ -140,6 +163,7 @@ void Gardener::update() {
     }
     if(input.just_released("space")) {
         m_splashing->set_animation(salmon::AnimationType::current,salmon::Direction::current,0);
+        m_drip.halt();
     }
 
     // Update water can UI
@@ -173,4 +197,24 @@ void Gardener::normalize(float& x, float& y) {
     float len = std::sqrt(x*x + y*y);
     x /= len;
     y /= len;
+}
+
+void Gardener::walk_sound(float speed) {
+
+    if(speed > 0.0) {
+        m_current_step_pause += m_scene->get_delta_time();
+    }
+
+    float next_step = (speed * m_min_pause_between_steps + (1.0 - speed) * m_max_pause_between_steps) / 2.0;
+    if(m_current_step_pause > next_step) {
+        m_current_step_pause -= next_step;
+        if(m_is_tick) {
+            m_tick.play();
+            m_is_tick = false;
+        }
+        else {
+            m_tock.play();
+            m_is_tick = true;
+        }
+    }
 }

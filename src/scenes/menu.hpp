@@ -24,6 +24,8 @@ class Menu : public GameScene {
 
         bool m_instructions_open = false;
 
+        salmon::MusicRef m_bg_music;
+
     private:
         static const bool good;
 };

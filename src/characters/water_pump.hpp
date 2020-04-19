@@ -3,6 +3,8 @@
 
 #include "core/game_character.hpp"
 
+#include "sound_ref.hpp"
+
 class GameScene;
 
 class WaterPump : public GameCharacter {
@@ -21,7 +23,17 @@ class WaterPump : public GameCharacter {
     private:
         static const bool good;
 
+        void play_sound();
+
         float m_fill_rate = 0.3; // Fill this amount per second
+        salmon::SoundRef m_pump_sound1;
+        salmon::SoundRef m_pump_sound2;
+
+        float m_pause_1 = 0.3;
+        float m_pause_2 = 0.9;
+        bool m_is_pause_1 = true;
+
+        float m_pause_delta = 0.0;
 };
 
 
