@@ -64,6 +64,9 @@ void Menu::button_pressed(std::string id) {
             // Load next scene file
             m_scene_manager->next_scene("garden1.tmx");
         }
+        else if(id == "multi") {
+            m_scene_manager->next_scene("garden2.tmx");
+        }
         else if(id == "HowTo") {
             unhide_layer("Instructions1");
             unhide_layer("Instructions2");

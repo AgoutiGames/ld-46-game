@@ -30,10 +30,11 @@ class Gardener : public GameCharacter {
 
         bool m_is_watering = false;
 
+        int m_player_index = 0;
+
         static const char* type;
     protected:
         // Add members here
-        int m_player_index = 0;
 
         WaterMeter* m_gauge = nullptr;
         Effect* m_splashing = nullptr;

@@ -16,20 +16,40 @@ void Gardener::init() {
 
     put(m_player_index, "m_player_index");
 
-    m_gauge = static_cast<WaterMeter*>(m_scene->add_character("Player1CanUI", "Interface"));
-    if(m_gauge == nullptr) {
-        std::cerr << "Gardener couldn't init his watering gauge!\n";
-    }
-    else {
-        m_gauge->move_absolute(4,32);
+    if(m_player_index == 0) {
+        m_gauge = static_cast<WaterMeter*>(m_scene->add_character("Player1CanUI", "Interface"));
+        if(m_gauge == nullptr) {
+            std::cerr << "Gardener couldn't init his watering gauge!\n";
+        }
+        else {
+            m_gauge->move_absolute(4,32);
+        }
+
+        m_score = static_cast<Score*>(m_scene->add_character("Score", "Interface"));
+        if(m_score == nullptr) {
+            std::cerr << "Gardener couldn't init his score counter!\n";
+        }
+        else {
+            m_score->move_absolute(50,34);
+        }
     }
 
-    m_score = static_cast<Score*>(m_scene->add_character("Score", "Interface"));
-    if(m_score == nullptr) {
-        std::cerr << "Gardener couldn't init his score counter!\n";
-    }
-    else {
-        m_score->move_absolute(50,34);
+    else if(m_player_index == 1) {
+        m_gauge = static_cast<WaterMeter*>(m_scene->add_character("Player1CanUI", "Interface"));
+        if(m_gauge == nullptr) {
+            std::cerr << "Gardener couldn't init his watering gauge!\n";
+        }
+        else {
+            m_gauge->move_absolute(364,32);
+        }
+
+        m_score = static_cast<Score*>(m_scene->add_character("Score", "Interface"));
+        if(m_score == nullptr) {
+            std::cerr << "Gardener couldn't init his score counter!\n";
+        }
+        else {
+            m_score->move_absolute(318,34);
+        }
     }
 
     m_splashing = static_cast<Effect*>(m_scene->add_character("WaterSplash", "Actors"));

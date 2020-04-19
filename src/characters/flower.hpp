@@ -31,6 +31,8 @@ class Flower : public GameCharacter {
         float m_seconds_per_point = 5; // All five seconds one point is granted
         float m_seconds = 0.0;
 
+        int m_player_index = 0;
+
         bool m_dead = false;
 };
 

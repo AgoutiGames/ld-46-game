@@ -38,12 +38,12 @@ void WaterPump::update() {
         if(c.my_hitbox() == "FILL" && c.other_hitbox() == "FILL") {
             pump = true;
             player = static_cast<Gardener*>(m_scene->get_character_by_id(c.get_actor_id()));
+            player->fill_can(m_fill_rate * m_scene->get_delta_time());
         }
     }
     clear_collisions();
 
     if(pump) {
-        player->fill_can(m_fill_rate * m_scene->get_delta_time());
         animate();
         play_sound();
     }

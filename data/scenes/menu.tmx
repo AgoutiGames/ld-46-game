@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" width="25" height="25" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#1f7d2a" nextlayerid="10" nextobjectid="4">
+<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" width="25" height="25" tilewidth="16" tileheight="16" infinite="0" backgroundcolor="#1f7d2a" nextlayerid="10" nextobjectid="5">
  <properties>
   <property name="type" value="Menu"/>
  </properties>
@@ -15,6 +15,7 @@
  <tileset firstgid="63" source="../tilesets/dirt_and_grass.tsx"/>
  <tileset firstgid="83" source="../tilesets/walls.tsx"/>
  <tileset firstgid="91" source="../tilesets/full_fence.tsx"/>
+ <tileset firstgid="100" source="../interface/multi.tsx"/>
  <layer id="1" name="Tile Layer 1" width="25" height="25">
   <data encoding="base64" compression="zlib">
    eJzt0tEKgCAMBVD/LJfZhAT7/6/pBhNEfCgVn/ZwmDDYdSIZYxh2oEbloh87BdjglLODA27wYIv+SIaTe7ZmBsnrnV/vQbJDzpyZkWfmPFvMnZHxvk+SPXxVY3XuxQtc6rO0wMh/UUop9d8DKla3hA==
@@ -32,6 +33,7 @@
   <object id="1" name="StartButton" gid="5" x="150" y="252" width="100" height="40"/>
   <object id="2" name="HowToButton" gid="1" x="150" y="316" width="100" height="40"/>
   <object id="3" name="QuitButton" gid="3" x="150" y="380" width="100" height="40"/>
+  <object id="4" name="MultiButton" gid="100" x="281.5" y="251" width="100" height="40"/>
  </objectgroup>
  <objectgroup id="3" name="Text"/>
  <imagelayer id="4" name="Instructions1" visible="0" offsetx="50" offsety="50">

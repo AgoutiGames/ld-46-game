@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.2" tiledversion="1.3.3" name="flower" tilewidth="16" tileheight="16" tilecount="6" columns="6">
- <image source="flower.png" width="96" height="16"/>
- <tile id="0" type="ACTOR_TEMPLATE">
-  <properties>
-   <property name="ACTOR_NAME" value="BlueFlower"/>
-   <property name="ANIMATION_TYPE" value="GROW0"/>
-   <property name="m_player_index" type="int" value="0"/>
-   <property name="type" value="Flower"/>
-  </properties>
+<tileset version="1.2" tiledversion="1.3.3" name="flower2" tilewidth="16" tileheight="16" tilecount="6" columns="6">
+ <image source="flower2.png" width="96" height="16"/>
+ <tile id="0">
   <objectgroup draworder="index" id="2">
    <object id="1" x="3" y="9" width="10" height="7"/>
    <object id="2" name="WATER" x="3" y="0" width="10" height="9"/>
@@ -16,7 +10,7 @@
  <tile id="1" type="ACTOR_ANIMATION">
   <properties>
    <property name="ACTOR_NAME" value="BlueFlower"/>
-   <property name="ANIMATION_TYPE" value="GROW0"/>
+   <property name="ANIMATION_TYPE" value="GROW1"/>
    <property name="DIRECTION" value="NONE"/>
   </properties>
   <animation>
