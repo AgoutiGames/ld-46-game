@@ -28,9 +28,13 @@ class Gardener : public GameCharacter {
 
         Score* get_score() {return m_score;}
 
+        bool m_is_watering = false;
+
         static const char* type;
     protected:
         // Add members here
+        int m_player_index = 0;
+
         WaterMeter* m_gauge = nullptr;
         Effect* m_splashing = nullptr;
         Score* m_score = nullptr;

@@ -32,14 +32,14 @@ void Flower::update() {
 
     salmon::InputCacheRef input = m_scene->get_input_cache();
 
-    if(!m_dead && input.is_down("space")) {
+    if(!m_dead) {
         for(salmon::CollisionRef c : get_collisions()) {
             if(c.my_hitbox() == "WATER" && c.other_hitbox() == "WATER") {
                 Gardener* g = static_cast<Gardener*>(m_scene->get_character_by_id(c.get_actor_id()));
                 if(g == nullptr) {
                     std::cerr << "BIG ERROR! FLOWER CAN'T FIND GARDENER!!\n";
                 }
-                else if (!g->is_can_empty()) {
+                else if (g->m_is_watering) {
                     m_water_stand += m_fill_rate * delta;
                     if(m_water_stand > 0.9999) {m_water_stand = 0.9999;}
                 }

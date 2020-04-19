@@ -14,6 +14,8 @@ Gardener::Gardener(salmon::ActorRef actor, GameScene* scene) : GameCharacter(act
 void Gardener::init() {
     // Setup member vars here | example: put(m_speed, "m_speed");
 
+    put(m_player_index, "m_player_index");
+
     m_gauge = static_cast<WaterMeter*>(m_scene->add_character("Player1CanUI", "Interface"));
     if(m_gauge == nullptr) {
         std::cerr << "Gardener couldn't init his watering gauge!\n";
@@ -87,7 +89,34 @@ void Gardener::update() {
     float m_x_direction = 0.0;
     float m_y_direction = 0.0;
 
-    if(input.is_down("w")) {
+    std::string up_key;
+    std::string down_key;
+    std::string left_key;
+    std::string right_key;
+    std::string water_key;
+
+    if(m_player_index == 0) {
+        up_key = "w";
+        down_key = "s";
+        left_key = "a";
+        right_key = "d";
+        water_key = "Space";
+    }
+    else if (m_player_index == 1) {
+        up_key = "Up";
+        down_key = "Down";
+        left_key = "Left";
+        right_key = "Right";
+        water_key = "Right Ctrl";
+    }
+    bool has_gamepad = false;
+    salmon::GamepadState gamepad;
+    if(input.get_gamepad_count() > static_cast<unsigned>(m_player_index)) {
+        has_gamepad = true;
+        gamepad = input.get_gamepad(m_player_index);
+    }
+
+    if(input.is_down(up_key) || (has_gamepad && (gamepad.button.up.down || gamepad.axis.left_y < 0.0)) ) {
         animate(salmon::AnimationType::current,salmon::Direction::up);
         //move(0,-1);
 
@@ -96,7 +125,7 @@ void Gardener::update() {
         m_x_splash_offset = 8.0;
         m_y_splash_offset = -8.0;
     }
-    else if(input.is_down("s")) {
+    else if(input.is_down(down_key) || (has_gamepad && (gamepad.button.down.down || gamepad.axis.left_y > 0.0)) ) {
         animate(salmon::AnimationType::current,salmon::Direction::down);
         //move(0,1);
 
@@ -105,7 +134,7 @@ void Gardener::update() {
         m_x_splash_offset = 8.0;
         m_y_splash_offset = 4.0;
     }
-    if(input.is_down("a")) {
+    if(input.is_down(left_key) || (has_gamepad && (gamepad.button.left.down || gamepad.axis.left_x < 0.0)) ) {
         animate(salmon::AnimationType::current,salmon::Direction::left);
         //move(-1,0);
 
@@ -114,7 +143,7 @@ void Gardener::update() {
         m_x_splash_offset = -7.0;
         m_y_splash_offset = -2.0;
     }
-    else if(input.is_down("d")) {
+    else if(input.is_down(right_key) || (has_gamepad && (gamepad.button.right.down || gamepad.axis.left_x > 0.0)) ) {
         animate(salmon::AnimationType::current,salmon::Direction::right);
         //move(1,0);
 
@@ -148,22 +177,25 @@ void Gardener::update() {
         m_y_speed = -m_y_speed;
     }*/
 
-    if(input.is_down("space")) {
+    if(input.is_down(water_key) || (has_gamepad && gamepad.button.a.down) ) {
         if(empty_can(m_drain_rate * delta)) {
             // Update splash effect position
             m_splashing->move_absolute(get_x()+m_x_splash_offset,get_y()+m_y_splash_offset);
             m_splashing->animate();
             if(!m_drip.playing()) {m_drip.play(-1);}
+            m_is_watering = true;
         }
         else {
             m_splashing->set_animation(salmon::AnimationType::current,salmon::Direction::current,0);
+            m_is_watering = false;
         }
 
 
     }
-    if(input.just_released("space")) {
+    if(input.just_released(water_key) || (has_gamepad && gamepad.button.a.released) ) {
         m_splashing->set_animation(salmon::AnimationType::current,salmon::Direction::current,0);
         m_drip.halt();
+        m_is_watering = false;
     }
 
     // Update water can UI
