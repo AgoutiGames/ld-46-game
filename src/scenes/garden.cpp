@@ -3,6 +3,9 @@
 #include <iostream>
 #include "core/scene_manager.hpp"
 
+#include "characters/gardener.hpp"
+#include "characters/score.hpp"
+
 const char* Garden::type = "Garden";
 const bool Garden::good = GameScene::register_class<Garden>(Garden::type);
 
@@ -53,7 +56,28 @@ void Garden::update() {
             a.font_family = "OpenSans";
             // a.underline = true;
             a.pixel_size = 35;
-            add_text("EndScreen", "Text",90,170, "GAME OVER", a);
+            std::vector<Gardener*> players = get_characters<Gardener>();
+            if(players.size() > 1) {
+                if(players[0]->m_player_index == 0) {
+                    if(players[0]->get_score()->get_points() > players[1]->get_score()->get_points()) {
+                        add_text("EndScreen", "Text",90,170, "RED WON!", a);
+                    }
+                    else {
+                        add_text("EndScreen", "Text",90,170, "GREY WON!", a);
+                    }
+                }
+                else {
+                    if(players[0]->get_score()->get_points() > players[1]->get_score()->get_points()) {
+                        add_text("EndScreen", "Text",90,170, "GREY WON!", a);
+                    }
+                    else {
+                        add_text("EndScreen", "Text",90,170, "RED WON!", a);
+                    }
+                }
+            }
+            else {
+                add_text("EndScreen", "Text",90,170, "GAME OVER", a);
+            }
 
             a.bold = false;
             a.color = {0,0,0};

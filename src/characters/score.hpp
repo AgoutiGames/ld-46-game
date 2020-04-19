@@ -18,6 +18,7 @@ class Score : public GameCharacter {
         static const char* type;
 
         void add_points(int amount);
+        int get_points() const {return m_points;}
 
     protected:
         // Add members here
