@@ -11,6 +11,7 @@
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="10" y="27" width="12" height="5"/>
+   <object id="2" name="SHOVE" x="0" y="0" width="32" height="32"/>
   </objectgroup>
  </tile>
  <tile id="1" type="ACTOR_ANIMATION">

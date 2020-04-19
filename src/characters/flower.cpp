@@ -42,8 +42,6 @@ void Flower::update() {
     // Add character logic here
     float delta = m_scene->get_delta_time();
 
-    salmon::InputCacheRef input = m_scene->get_input_cache();
-
     if(!m_dead) {
         for(salmon::CollisionRef c : get_collisions()) {
             if(c.my_hitbox() == "WATER" && c.other_hitbox() == "WATER") {

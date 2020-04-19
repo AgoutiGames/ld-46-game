@@ -73,6 +73,11 @@ void Gardener::init() {
     }
     m_drip.set_volume(0.3);
 
+    m_shove_sound = m_scene->get_audio_manager().get_sound("sounds/shove.ogg");
+    if(!m_shove_sound.good()) {
+        std::cerr << "Failed to load gardener shoving sound!!";
+    }
+
     // Clear data accessed via put
     get_data().clear();
 }
@@ -114,6 +119,7 @@ void Gardener::update() {
     std::string left_key;
     std::string right_key;
     std::string water_key;
+    std::string shove_key;
 
     if(m_player_index == 0) {
         up_key = "w";
@@ -121,6 +127,7 @@ void Gardener::update() {
         left_key = "a";
         right_key = "d";
         water_key = "Space";
+        shove_key = "Left Ctrl";
     }
     else if (m_player_index == 1) {
         up_key = "Up";
@@ -128,6 +135,7 @@ void Gardener::update() {
         left_key = "Left";
         right_key = "Right";
         water_key = "Right Ctrl";
+        shove_key = "Keypad 0";
     }
     bool has_gamepad = false;
     salmon::GamepadState gamepad;
@@ -173,6 +181,17 @@ void Gardener::update() {
         m_y_splash_offset = -2.0;
     }
 
+    if(m_is_shoved) {
+        m_shove_cooldown += delta;
+        if(m_shove_cooldown >= m_shove_duration) {
+            m_is_shoved = false;
+        }
+        else {
+            m_x_direction += m_x_shove;
+            m_y_direction += m_y_shove;
+        }
+    }
+
     // normalize(m_x_direction,m_y_direction);
     m_x_speed += m_x_direction * (m_acceleration_factor + m_decellaration_factor) * delta;
     m_y_speed += m_y_direction * (m_acceleration_factor + m_decellaration_factor) * delta;
@@ -192,6 +211,16 @@ void Gardener::update() {
 
     walk_sound(std::sqrt(m_x_speed * m_x_speed + m_y_speed * m_y_speed));
 
+
+    for(salmon::CollisionRef c : get_collisions()) {
+        if(c.my_hitbox() == "SHOVE" && c.other_hitbox() == "SHOVE") {
+            if(input.is_down(shove_key) || (has_gamepad && gamepad.button.b.down)) {
+                static_cast<Gardener*>(m_scene->get_character_by_id(c.get_actor_id()))->get_shoved(this);
+            }
+        }
+    }
+
+    clear_collisions();
     /*if(collided) {
         m_x_speed = -m_x_speed;
         m_y_speed = -m_y_speed;
@@ -269,4 +298,48 @@ void Gardener::walk_sound(float speed) {
             m_is_tick = true;
         }
     }
+}
+
+void Gardener::get_shoved(Gardener* other) {
+    if(m_is_shoved) {return;}
+
+    m_shove_sound.play();
+
+    m_is_shoved = true;
+    float x_delta = other->get_x() - get_x();
+    float y_delta = other->get_y() - get_y();
+
+    normalize(x_delta,y_delta);
+    m_x_shove = -x_delta;
+    m_y_shove = -y_delta;
+
+    /*
+    // Get shoved horizontally
+    if(std::abs(x_delta) > std::abs(y_delta)) {
+        // Get shoved to the left
+        if(x_delta > 0.0) {
+            m_x_shove = -1.0;
+            m_y_shove = 0.0;
+        }
+        // Get shoved to the right
+        else {
+            m_x_shove = 1.0;
+            m_y_shove = 0.0;
+        }
+    }
+    // Get shoved vertically
+    else {
+        // Get shoved up
+        if(y_delta > 0.0) {
+            m_x_shove = 0.0;
+            m_y_shove = -1.0;
+        }
+        // Get shoved down
+        else {
+            m_x_shove = 0.0;
+            m_y_shove = 1.0;
+        }
+    }*/
+
+    m_shove_cooldown = 0.0;
 }

@@ -67,6 +67,15 @@ class Gardener : public GameCharacter {
         float m_current_step_pause = 0.0;
 
         salmon::SoundRef m_drip;
+        salmon::SoundRef m_shove_sound;
+
+        bool m_is_shoved = false;
+        float m_x_shove = 0.0;
+        float m_y_shove = 0.0;
+        float m_shove_duration = 0.65;
+        float m_shove_cooldown = 0.00;
+
+        void get_shoved(Gardener* other);
 
     private:
         static const bool good;
