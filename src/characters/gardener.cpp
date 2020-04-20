@@ -127,14 +127,14 @@ void Gardener::update() {
         left_key = "a";
         right_key = "d";
         water_key = "Space";
-        shove_key = "Left Ctrl";
+        shove_key = "Left Shift";
     }
     else if (m_player_index == 1) {
         up_key = "Up";
         down_key = "Down";
         left_key = "Left";
         right_key = "Right";
-        water_key = "Right Ctrl";
+        water_key = "Right Shift";
         shove_key = "Keypad 0";
     }
     bool has_gamepad = false;
