@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.2" tiledversion="1.3.3" orientation="orthogonal" renderorder="right-down" width="25" height="25" tilewidth="16" tileheight="16" infinite="0" nextlayerid="9" nextobjectid="24">
+ <properties>
+  <property name="type" value="Garden"/>
+ </properties>
+ <tileset firstgid="1" source="../tilesets/dirt_and_grass.tsx"/>
+ <tileset firstgid="21" source="../tilesets/full_fence.tsx"/>
+ <tileset firstgid="30" source="../characters/player.tsx"/>
+ <tileset firstgid="36" source="../characters/flower.tsx"/>
+ <tileset firstgid="42" source="../characters/water_pump.tsx"/>
+ <tileset firstgid="48" source="../tilesets/walls.tsx"/>
+ <tileset firstgid="56" source="../characters/water_meters.tsx"/>
+ <tileset firstgid="67" source="../interface/water_can_meter.tsx"/>
+ <tileset firstgid="77" source="../characters/water_splash.tsx"/>
+ <tileset firstgid="83" source="../interface/sun_meter.tsx"/>
+ <tileset firstgid="93" source="../interface/score.tsx"/>
+ <tileset firstgid="94" source="../characters/player2.tsx"/>
+ <tileset firstgid="100" source="../characters/flower2.tsx"/>
+ <layer id="1" name="Ground Layer" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJztlM0OxCAIhG11/5q0SX3/h11MJDEEdNi2e+rhu1RgCjhuIYTtBiYSHyJdWG8hViKD+aN/0eq9iJ14Axol/zHQ8dSz8mewZ2SeFs/ai/zu2SfP04unN9aY6lxHzAc00Bwkvp1/UnKs/SRFQ9bS5p8VDWs/8jwrtf6pwZ5h30iN9nwXsa1Guc/lXk+h78FY437ZOXqH23jNZ5YnUY2oxHsoM+q9M1wf9Z21n6Wj4fVd7820dn2Wxkj/yJt/cw5f7cIf7Q==
+  </data>
+ </layer>
+ <layer id="3" name="Fence and walls" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgeQAyIRWmIxYFYmsZ+kBm1g2I7DIDYCAc2h6oxwyJnSIIdxmS6GZs+Qnbg8w8295NjB7H+waeeWDtw+Qfd/ZTYgcs/xKgbTHaYMGBPu6ZY1MHk8dmBTS8hgE8doXyO7C5seQ6GTbHqJs4OUoEBA/FhRUy+I9Y/w73cHbUDux2SNLZDCogBmioabg==
+  </data>
+ </layer>
+ <objectgroup id="5" name="Actors">
+  <object id="2" name="GardenFlower" gid="36" x="90.5" y="110.5" width="16" height="16"/>
+  <object id="3" name="GardenFlower" gid="36" x="76" y="320" width="16" height="16">
+   <properties>
+    <property name="m_player_index" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="4" name="GardenFlower" gid="36" x="177.5" y="142.5" width="16" height="16"/>
+  <object id="5" name="GardenFlower" gid="36" x="34" y="78.5" width="16" height="16">
+   <properties>
+    <property name="m_player_index" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="7" name="GardenFlower" gid="36" x="233.5" y="255" width="16" height="16">
+   <properties>
+    <property name="m_player_index" type="int" value="0"/>
+   </properties>
+  </object>
+  <object id="9" name="Well" gid="42" x="21.261" y="217.174" width="32" height="32"/>
+  <object id="17" name="Player1" gid="94" x="43.308" y="216.97" width="32" height="32"/>
+  <object id="21" name="Well" gid="42" x="327" y="213.5" width="32" height="32"/>
+  <object id="22" name="GardenFlower" gid="36" x="317" y="301.5" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup id="6" name="Interface">
+  <object id="13" name="SunMeter" gid="83" x="100" y="33" width="200" height="32"/>
+ </objectgroup>
+ <imagelayer id="8" name="GameOver" visible="0" offsetx="50" offsety="170">
+  <image source="../interface/game_over_bg.png" width="300" height="60"/>
+ </imagelayer>
+ <objectgroup id="7" name="Text"/>
+ <layer id="4" name="Front Fence" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApGwSgYBdQGojTEIAAAa+AB5A==
+  </data>
+ </layer>
+</map>

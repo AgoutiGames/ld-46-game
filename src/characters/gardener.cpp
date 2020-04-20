@@ -236,6 +236,7 @@ void Gardener::update() {
         }
         else {
             m_splashing->set_animation(salmon::AnimationType::current,salmon::Direction::current,0);
+            m_drip.halt();
             m_is_watering = false;
         }
 

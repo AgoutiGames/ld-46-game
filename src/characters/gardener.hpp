@@ -42,7 +42,7 @@ class Gardener : public GameCharacter {
 
         float m_water_stand = 0.0;
 
-        float m_drain_rate = 0.1; // Depletes can this amount per second
+        float m_drain_rate = 0.135; // Depletes can this amount per second
 
         float m_x_splash_offset = 8.0;
         float m_y_splash_offset = 4.0;

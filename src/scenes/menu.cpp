@@ -60,12 +60,37 @@ void Menu::button_pressed(std::string id) {
         if(id == "Quit") {
             m_scene_manager->shutdown();
         }
+        /*
         else if(id == "Start") {
             // Load next scene file
             m_scene_manager->next_scene("garden1.tmx");
         }
         else if(id == "multi") {
             m_scene_manager->next_scene("garden2.tmx");
+        }*/
+        else if(id == "stage1s") {
+            m_scene_manager->next_scene("garden1.tmx");
+        }
+        else if(id == "stage2s") {
+            m_scene_manager->next_scene("maze1.tmx");
+        }
+        else if(id == "stage3s") {
+
+        }
+        else if(id == "stage4s") {
+
+        }
+        else if(id == "stage1m") {
+            m_scene_manager->next_scene("garden2.tmx");
+        }
+        else if(id == "stage2m") {
+            m_scene_manager->next_scene("maze2.tmx");
+        }
+        else if(id == "stage3m") {
+
+        }
+        else if(id == "stage4m") {
+
         }
         else if(id == "HowTo") {
             unhide_layer("Instructions1");
