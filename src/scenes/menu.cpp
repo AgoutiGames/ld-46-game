@@ -75,7 +75,7 @@ void Menu::button_pressed(std::string id) {
             m_scene_manager->next_scene("maze1.tmx");
         }
         else if(id == "stage3s") {
-
+            m_scene_manager->next_scene("narrow1.tmx");
         }
         else if(id == "stage4s") {
 
@@ -87,7 +87,7 @@ void Menu::button_pressed(std::string id) {
             m_scene_manager->next_scene("maze2.tmx");
         }
         else if(id == "stage3m") {
-
+            m_scene_manager->next_scene("narrow2.tmx");
         }
         else if(id == "stage4m") {
 
